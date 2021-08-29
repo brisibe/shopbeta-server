@@ -42,20 +42,7 @@ namespace shopbeta_server
             services.ConfigureJwt(Configuration);
             services.ConfigureAzureBlog(Configuration);
             services.ConfigureFileUpload();
-            //services.ConfigureResponseCaching();
-            
-
-
-
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(opt =>
-            //{
-            //    opt.Authority = Configuration["Auth0:Domain"];
-            //    opt.Audience = Configuration["Auth0:Audience"];
-            //});
+         
 
             services.AddControllers();
         }
