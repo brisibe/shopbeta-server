@@ -20,9 +20,6 @@
       "commandName": "Project",
       "launchUrl": "weatherforecast",
       "environmentVariables": {
-        "Key": "Value",
-        "SECRET": "ShopBetaApiSecretKeyForAuthentication",
-        "AzureBlobStorage": "DefaultEndpointsProtocol=https;AccountName=shopbeta;AccountKey=p6XR4CCl7Pmw8G5sTGPNOgM46CwoK/r/lWABVvK/OoxtCcqqcBzLPaT2jIU3J/qDds0X0LLDMivHkWXObD1QJw==;EndpointSuffix=core.windows.net",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

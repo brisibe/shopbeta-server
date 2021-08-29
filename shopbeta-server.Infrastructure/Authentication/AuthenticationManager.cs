@@ -15,11 +15,11 @@ namespace shopbeta_server.Infrastructure.Authentication
 {
     public class AuthenticationManager : IAuthenticationManager
     {
-    private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private User _user;
 
-    public AuthenticationManager(UserManager<User> userManager, IConfiguration configuration)
+        public AuthenticationManager(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -39,11 +39,11 @@ namespace shopbeta_server.Infrastructure.Authentication
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
 
-     
+
 
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
+            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("JwtSettings").GetSection("SECRET").Value);
             var secret = new SymmetricSecurityKey(key);
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
@@ -58,10 +58,10 @@ namespace shopbeta_server.Infrastructure.Authentication
                 new Claim(ClaimTypes.Role, _user.Role)
 
             };
-            
+
             //var roles = await _userManager.GetRolesAsync(_user);
-          
-            
+
+
 
             if (_user.Role == "Seller")
             {
