@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
-appsettings.json
-appsettings.Production.json
+shopbeta/appsettings.json
+shopbeta/appsettings.Production.json
 
 # User-specific files
 *.rsuser
