@@ -43,7 +43,7 @@ namespace shopbeta_server.Infrastructure.Authentication
 
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("JwtSettings").GetSection("SECRET").Value);
+            var key = Encoding.UTF8.GetBytes(_configuration.GetSection("SECRET").Value ?? throw new ArgumentNullException("secret is null"));
             var secret = new SymmetricSecurityKey(key);
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
@@ -73,13 +73,12 @@ namespace shopbeta_server.Infrastructure.Authentication
 
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
-            var jwtSettings = _configuration.GetSection("JwtSettings");
 
             var tokenOptions = new JwtSecurityToken(
-                  issuer: jwtSettings.GetSection("validIssuer").Value,
-                  audience: jwtSettings.GetSection("validAudience").Value,
+                  issuer: _configuration.GetSection("jwt_validIssuer").Value,
+                  audience: _configuration.GetSection("jwt_validAudience").Value,
                   claims: claims,
-                  expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)),
+                  expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration.GetSection("jwt_expires").Value)),
                   signingCredentials: signingCredentials
 
                   );

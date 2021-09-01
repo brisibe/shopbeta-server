@@ -63,8 +63,8 @@ namespace shopbeta_server.Extensions
 
         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings");
-            var secretKey = Environment.GetEnvironmentVariable("SECRET") ?? throw new ArgumentNullException("secret is null");
+            var secretKey = configuration.GetSection("SECRET").Value ?? throw new ArgumentNullException("secret is null");
+
 
             services.AddAuthentication(opt =>
             {
@@ -80,8 +80,8 @@ namespace shopbeta_server.Extensions
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
-                    ValidAudience = jwtSettings.GetSection("validAudience").Value,
+                    ValidIssuer = configuration.GetSection("jwt_validIssuer").Value ?? throw new ArgumentNullException("issuer is null"),
+                    ValidAudience = configuration.GetSection("jwt_validAudience").Value ?? throw new ArgumentNullException("audience is null"),
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
                 };
             });
