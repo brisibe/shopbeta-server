@@ -21,14 +21,15 @@ namespace shopbeta_server.Extensions
 {
     public static class ServiceExtensions
     {
-        public static void ConfigureCors(this IServiceCollection services) =>
-       services.AddCors(options =>
-       {
-           options.AddPolicy("CorsPolicy", builder =>
-           {
-               builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-           });
-       });
+       // public static void ConfigureCors(this IServiceCollection services) =>
+       //services.AddCors(options =>
+       //{
+
+       //    options.AddPolicy("CorsPolicy" , builder =>
+       //    {
+       //        builder.WithOrigins("http://shopbeta.vercel.app", "https://www.shopbeta.vercel.app");
+       //    });
+       //});
 
         public static void ConfigureAuthManager(this IServiceCollection services) =>
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
