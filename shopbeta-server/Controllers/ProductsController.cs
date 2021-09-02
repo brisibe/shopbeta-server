@@ -139,7 +139,7 @@ namespace shopbeta.Controllers
 
 
         // DELETE api/<ProductsController>/5
-        [Authorize(Roles = "SELLER")]
+        [Authorize(Roles = " Seller ")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
